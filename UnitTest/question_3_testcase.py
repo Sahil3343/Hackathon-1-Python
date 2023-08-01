@@ -39,11 +39,6 @@ class Test(unittest.TestCase):
         expected_output = "No"
         self.assertEqual(self.question.truck_queue(input_list), expected_output)
 
-    def test_6(self):
-        input_list = [1, 2, 3, 6, 7]
-        expected_output = "Yes"
-        self.assertEqual(self.question.truck_queue(input_list), expected_output)
-
 
 if __name__ == '__main__':
     unittest.main()

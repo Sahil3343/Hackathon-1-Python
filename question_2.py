@@ -6,6 +6,7 @@
 # Expected Output 2 - a2b5t4d1l3
 
 # Time Complexity Achieved - O(n)
+# Time Complexity Reasoning - As a single loop is being used we will achieve a time complexity of O(n)
 
 import traceback
 from itertools import groupby

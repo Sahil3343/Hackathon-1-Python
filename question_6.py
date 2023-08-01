@@ -2,8 +2,8 @@
 # Input -
 # Expected output -
 
-# Time Complexity Achieved -
-# Time Complexity Reasoning -
+# Time Complexity Achieved - O(n)
+# Time Complexity Reasoning - As we are looping the complete message once it will have a time complexity of O(n)
 
 import traceback
 

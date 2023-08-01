@@ -6,6 +6,7 @@
 # Expected output 2 - No
 
 # Time Complexity Achieved - O(n)
+# Time Complexity Reasoning - As we have one for loop this will give us O(n). We have a while loop which again will give us O(n). Which results to O(n)
 
 import traceback
 

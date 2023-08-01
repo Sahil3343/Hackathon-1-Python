@@ -2,8 +2,8 @@
 # Input -
 # Expected output -
 
-# Time Complexity Achieved -
-# Time Complexity Reasoning -
+# Time Complexity Achieved - O(n + m log m)
+# Time Complexity Reasoning - As we have 1 loop and 1 sorting function above will ht the time complexity
 
 import traceback
 

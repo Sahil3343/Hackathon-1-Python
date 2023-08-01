@@ -1,15 +1,25 @@
-# Question 5
-# Input -
-# Expected output -
+"""
+Question 5
+Input -
+Expected output -
 
-# Time Complexity Achieved - O(n + m log m)
-# Time Complexity Reasoning - As we have 1 loop O(n) and 1 sorting function O(m log m) above will be the time complexity
+Time Complexity Achieved - O(n + m log m)
+Time Complexity Reasoning - As we have 1 loop O(n) and 1 sorting function O(m log m)
+above will be the time complexity
+"""
 
 import traceback
 
 
 class Question5:
+    """Question 5 Class"""
     def match_winner(self, matches, scores):
+        """
+        Find the first and second place of the series
+        :param matches:
+        :param scores:
+        :return winner:
+        """
         try:
             # Initializing dictionary for storing team overall points & goal differences
             team_points = {}
@@ -41,14 +51,15 @@ class Question5:
                 team_goal_differences[team_1] = team_goal_differences.get(team_1, 0) + (score_1 - score_2)
                 team_goal_differences[team_2] = team_goal_differences.get(team_2, 0) + (score_2 - score_1)
 
-            # Sorting the teams according to overall points and goal differences (if any two or more teams have the same points)
+            # Sorting the teams according to overall points and goal differences
+            # (if any two or more teams have the same points)
             sorted_team_points = sorted(team_points.items(), key=lambda x: (x[1], team_goal_differences[x[0]], x[0]), reverse=True)
             winners = [team[0] for team in sorted_team_points[:2]]
 
             result = winners[0] + " " + winners[1]
 
             return result
-        except:
+        except:  # pylint: disable=bare-except
             traceback.print_exc()
             return "Error"
 

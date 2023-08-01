@@ -1,15 +1,24 @@
-# Question 6
-# Input -
-# Expected output -
+"""
+Question 6
+Input - 123
+Expected output - 3
 
-# Time Complexity Achieved - O(n)
-# Time Complexity Reasoning - As we are looping the complete message once it will have a time complexity of O(n)
+Time Complexity Achieved - O(n)
+Time Complexity Reasoning - As we are looping the complete message once
+it will have a time complexity of O(n)
+"""
 
 import traceback
 
 
 class Question6:
+    """Question 6 Class"""
     def total_possible_decodes(self, message):
+        """
+        Finding total possibilities to decode a message
+        :param message:
+        :return decode_possibilities:
+        """
         try:
             # Checking if the length of the input message is 0 or not
             if len(message) == 0:
@@ -38,7 +47,7 @@ class Question6:
                     result[i] += result[i - 2]
 
             return result[len(message)]
-        except:
+        except:  # pylint: disable=bare-except
             traceback.print_exc()
             return -1
 

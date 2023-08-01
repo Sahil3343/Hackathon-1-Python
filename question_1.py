@@ -1,9 +1,12 @@
-# Question 1
-# Input - 1, 2, -4, 0, -1, 0, 3, 7, 0, 5, 0, 1, -1, 0
-# Expected Output - 1, 2, -4, -1, -1, 1, 3, 7, 5, 0, 0, 0, 0, 0
+"""
+Question 1
+Input - 1, 2, -4, 0, -1, 0, 3, 7, 0, 5, 0, 1, -1, 0
+Expected Output - 1, 2, -4, -1, -1, 1, 3, 7, 5, 0, 0, 0, 0, 0
 
-# Time Complexity Achieved - O(n)
-# Time Complexity Reasoning - As we have two for loops (not nested) we will achieve a time complexity of O(n)
+Time Complexity Achieved - O(n)
+Time Complexity Reasoning - As we have two for loops (not nested) we
+will achieve a time complexity of O(n)
+"""
 
 import traceback
 
@@ -11,7 +14,11 @@ import traceback
 class Question1:
     """Question 1 Class"""
     def rearranging_list(self, input_list):
-        """Rearranging list"""
+        """
+        Rearranging integers in a list
+        :param input_list:
+        :return rearranged_list:
+        """
         try:
             # Initializing the result list
             result = []

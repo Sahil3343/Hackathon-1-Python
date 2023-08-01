@@ -1,14 +1,24 @@
-# Question 4
-# Input - ["fdjkd", "dfjdk", "dfd", "fdjkd", "kkjjk"]
-# Expected output - 6.1 seconds
+"""
+Question 4
+Input - ["fdjkd", "dfjdk", "dfd", "fdjkd", "kkjjk"]
+Expected output - 6.1 seconds
 
-# Time Complexity Achieved - O(n * m)
-# Time Complexity Reasoning - n is the number of words and m is the number of characters in the word
+Time Complexity Achieved - O(n * m)
+Time Complexity Reasoning - n is the number of words and m is the number of characters in the word
+"""
 
 import traceback
 
 class Question4:
+    """Question 4 Class"""
     def typing_time(self, input_words, input_righthand, input_lefthand):
+        """
+        Finding time taken to type a word
+        :param input_words:
+        :param input_righthand:
+        :param input_lefthand:
+        :return total_time_taken:
+        """
         try:
             # Initializing variables
             total_time_taken = 0
@@ -20,8 +30,8 @@ class Question4:
                 temp_time = 0
 
                 # Checking if the word has already been typed previously or not
-                if word in word_time.keys():
-                    # Taking the half time of what was previously typed
+                if word in word_time:
+                    # Taking the half-time of what was previously typed
                     time = float(word_time.get(word)) / 2.0
                     word_time[word] = time
                     total_time_taken += time
@@ -60,7 +70,7 @@ class Question4:
                     total_time_taken += temp_time
 
             return total_time_taken
-        except:
+        except:  # pylint: disable=bare-except
             traceback.print_exc()
             return -1
 

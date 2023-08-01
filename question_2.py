@@ -1,12 +1,15 @@
-# Question 2
-# Input 1 - aaa
-# Expected Output 1 - a3
+"""
+Question 2
+Input 1 - aaa
+Expected Output 1 - a3
 
-# Input 2 - aabbbbbttttdlll
-# Expected Output 2 - a2b5t4d1l3
+Input 2 - aabbbbbttttdlll
+Expected Output 2 - a2b5t4d1l3
 
-# Time Complexity Achieved - O(n)
-# Time Complexity Reasoning - As a single loop is being used we will achieve a time complexity of O(n)
+Time Complexity Achieved - O(n)
+#ime Complexity Reasoning - As a single loop is being used we
+will achieve a time complexity of O(n)
+"""
 
 import traceback
 from itertools import groupby
@@ -14,7 +17,13 @@ from itertools import groupby
 
 class Question2:
     """Question 2 Class"""
+
     def zip_string(self, input_string):
+        """
+        Method to Zip String
+        :param input_string:
+        :return result:
+        """
         try:
             # Checking if the string only contains alphabets
             if not input_string.isalpha():
@@ -34,13 +43,13 @@ class Question2:
                 result = result + str(len(temp_string))
 
             return result
-        except:
+        except:  # pylint: disable=bare-except
             traceback.print_exc()
             return "Error"
 
 
 if __name__ == '__main__':
-    input_string = "aabbbccaaa"
+    input_str = "aabbbccaaa"
     question = Question2()
-    print("Input String - ", input_string)
-    print("Output String - ", question.zip_string(input_string))
+    print("Input String - ", input_str)
+    print("Output String - ", question.zip_string(input_str))

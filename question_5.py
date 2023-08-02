@@ -3,16 +3,17 @@ Question 5
 Input -
 Expected output -
 
-Time Complexity Achieved - O(n + m log m)
-Time Complexity Reasoning - As we have 1 loop O(n) and 1 sorting function O(m log m)
-above will be the time complexity
+Time Complexity Achieved - O(n + m)
+Time Complexity Reasoning - As we have 2 loops. One iterates n matches
+and other iterates m teams
 """
-
+import heapq
 import traceback
 
 
 class Question5:
     """Question 5 Class"""
+
     def match_winner(self, matches, scores):
         """
         Find the first and second place of the series
@@ -21,9 +22,10 @@ class Question5:
         :return winner:
         """
         try:
-            # Initializing dictionary for storing team overall points & goal differences
+            # Initializing dictionary for storing team overall points, goal differences, top teams
             team_points = {}
             team_goal_differences = {}
+            top_teams = []
 
             # Iterating through the matches and scores
             for iteration, match in enumerate(matches):
@@ -39,9 +41,11 @@ class Question5:
                 # Team 1 won
                 if score_1 > score_2:
                     team_points[team_1] = team_points.get(team_1, 0) + 3
+                    team_points[team_2] = team_points.get(team_2, 0) + 0
                 # Team 2 won
                 elif score_1 < score_2:
                     team_points[team_2] = team_points.get(team_2, 0) + 3
+                    team_points[team_1] = team_points.get(team_1, 0) + 0
                 # Tie
                 elif score_1 == score_2:
                     team_points[team_1] = team_points.get(team_1, 0) + 1
@@ -51,12 +55,12 @@ class Question5:
                 team_goal_differences[team_1] = team_goal_differences.get(team_1, 0) + (score_1 - score_2)
                 team_goal_differences[team_2] = team_goal_differences.get(team_2, 0) + (score_2 - score_1)
 
-            # Sorting the teams according to overall points and goal differences
-            # (if any two or more teams have the same points)
-            sorted_team_points = sorted(team_points.items(), key=lambda x: (x[1], team_goal_differences[x[0]], x[0]), reverse=True)
-            winners = [team[0] for team in sorted_team_points[:2]]
+            # Iterating the team points dictionary
+            for team, points in team_points.items():
+                # Pushing related scores into top_teams
+                heapq.heappush(top_teams, (-points, -team_goal_differences[team], team))
 
-            result = winners[0] + " " + winners[1]
+            result = heapq.heappop(top_teams)[2] + " " + heapq.heappop(top_teams)[2]
 
             return result
         except:  # pylint: disable=bare-except

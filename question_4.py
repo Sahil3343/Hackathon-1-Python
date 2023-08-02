@@ -9,9 +9,17 @@ Time Complexity Reasoning - n is the number of words and m is the number of char
 
 import traceback
 
+
 class Question4:
     """Question 4 Class"""
-    def typing_time(self, input_words, input_righthand, input_lefthand):
+
+    RIGHT_HAND = "RIGHT"
+    LEFT_HAND = "LEFT"
+    FIRST_CHAR_TIME = 0.2
+    SAME_HAND_TIME = 0.4
+    DIFFERENT_HAND_TIME = 0.2
+
+    def typing_time(self, input_words, input_righthand):
         """
         Finding time taken to type a word
         :param input_words:
@@ -27,7 +35,7 @@ class Question4:
 
             # Iterating input word list
             for key, word in enumerate(input_words):
-                temp_time = 0
+                time = 0
 
                 # Checking if the word has already been typed previously or not
                 if word in word_time:
@@ -36,40 +44,37 @@ class Question4:
                     word_time[word] = time
                     total_time_taken += time
                 else:
-                    # Iterating word for char
-                    for iteration, char in enumerate(word):
-                        # First character of the word
-                        if iteration == 0:
-                            temp_time += 0.2
-                            # Setting hand typed with
-                            if char in input_righthand:
-                                previous_hand = "RIGHT"
+                    time = self.FIRST_CHAR_TIME
+
+                    # Checking first char hand
+                    if word[0] in input_righthand:
+                        previous_hand = self.RIGHT_HAND
+                    else:
+                        previous_hand = self.LEFT_HAND
+
+                    for char in word[1:]:
+                        # Checking in char is part of right hand or not
+                        if char in input_righthand:
+                            # Checking if previous char and current char are same hand (right)
+                            if previous_hand == self.RIGHT_HAND:
+                                time += self.SAME_HAND_TIME
                             else:
-                                previous_hand = "LEFT"
+                                time += self.DIFFERENT_HAND_TIME
+                                previous_hand = self.RIGHT_HAND
                         else:
-                            if char in input_righthand:
-                                # If previous hand (right) matches with current hand (right)
-                                if previous_hand == "RIGHT":
-                                    temp_time += 0.4
-                                # If previous hand (left) doesn't match with current hand (right)
-                                else:
-                                    temp_time += 0.2
-                                    previous_hand = "RIGHT"
+                            # Checking if previous char and current char are same hand (left)
+                            if previous_hand == self.LEFT_HAND:
+                                time += self.SAME_HAND_TIME
                             else:
-                                # If previous hand (left) matche with current hand (left)
-                                if previous_hand == "LEFT":
-                                    temp_time += 0.4
-                                # If previous hand (right) doesn't match with current hand (left)
-                                else:
-                                    temp_time += 0.2
-                                    previous_hand = "LEFT"
+                                time += self.DIFFERENT_HAND_TIME
+                                previous_hand = self.LEFT_HAND
 
                     # Appending word and time taken to dictionary
-                    word_time[word] = temp_time
+                    word_time[word] = time
                     # Updating total time taken
-                    total_time_taken += temp_time
+                    total_time_taken += time
 
-            return total_time_taken
+            return round(total_time_taken, 2)
         except:  # pylint: disable=bare-except
             traceback.print_exc()
             return -1
@@ -81,4 +86,4 @@ if __name__ == '__main__':
     input_left = ['d', 'f']
     question = Question4()
     print("Input Words - ", input_list)
-    print("Output Time Taken - ", question.typing_time(input_list, input_right, input_left))
+    print("Output Time Taken - ", question.typing_time(input_list, input_right))

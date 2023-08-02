@@ -24,6 +24,16 @@ class Testing(unittest.TestCase):
         expected_output = 0
         self.assertEqual(self.question.total_possible_decodes(input_string), expected_output)
 
+    def test_3(self):
+        input_string = "184"
+        expected_output = 2
+        self.assertEqual(self.question.total_possible_decodes(input_string), expected_output)
+
+    def test_4(self):
+        input_string = "12845"
+        expected_output = 2
+        self.assertEqual(self.question.total_possible_decodes(input_string), expected_output)
+
 
 if __name__ == '__main__':
     unittest.main()

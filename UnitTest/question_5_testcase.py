@@ -77,6 +77,40 @@ class Testing(unittest.TestCase):
         expected_output = "d b"
         self.assertEqual(self.question.match_winner(input_matches, input_scores), expected_output)
 
+    def test_2(self):
+        input_matches = [
+            ["a", "b"],
+            ["a", "c"],
+            ["a", "d"],
+            ["b", "a"],
+            ["b", "c"],
+            ["b", "d"],
+            ["c", "a"],
+            ["c", "b"],
+            ["c", "d"],
+            ["d", "a"],
+            ["d", "b"],
+            ["d", "c"]
+        ]
+
+        input_scores = [
+            [1, 1],
+            [1, 1],
+            [1, 1],
+            [1, 1],
+            [1, 1],
+            [1, 1],
+            [1, 1],
+            [1, 1],
+            [1, 1],
+            [1, 1],
+            [1, 1],
+            [1, 1],
+        ]
+
+        expected_output = "a b"
+        self.assertEqual(self.question.match_winner(input_matches, input_scores), expected_output)
+
 
 if __name__ == '__main__':
     unittest.main()

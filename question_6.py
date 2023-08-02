@@ -20,33 +20,42 @@ class Question6:
         :return decode_possibilities:
         """
         try:
+
+            # Setting flag & initializing result
+            flag = True
+            result = None
+
             # Checking if the length of the input message is 0 or not
             if len(message) == 0:
-                return 0
+                result = 0
+                flag = False
 
-            # Initializing result string and setting default values
-            result = [0] * (len(message) + 1)
-            result[0] = 1
+            if flag:
+                # Initializing count list and setting default values
+                count = [0] * (len(message) + 1)
+                count[0] = 1
 
-            # Checking if the first digit is 0 or not
-            if message[0] == 0:
-                result[1] = 0
-            else:
-                result[1] = 1
+                # Checking if the first digit is 0 or not
+                if message[0] == 0:
+                    count[1] = 0
+                else:
+                    count[1] = 1
 
-            # Iterating string to look at possibilities of decoding
-            for i in range(2, len(message) + 1):
-                # Checking for single digits. If it is between 1 and 9 (inclusive)
-                single_digit = int(message[i - 1])
-                if 1 <= single_digit <= 9:
-                    result[i] += result[i - 1]
+                # Iterating string to look at possibilities of decoding
+                for i in range(2, len(message) + 1):
+                    # Checking for single digits. If it is between 1 and 9 (inclusive)
+                    single_digit = int(message[i - 1])
+                    if 1 <= single_digit <= 9:
+                        count[i] += count[i - 1]
 
-                # Checking for two digits. If it is between 10 and 26 (inclusive)
-                two_digit = int(message[i - 2:i])
-                if 10 <= two_digit <= 26:
-                    result[i] += result[i - 2]
+                    # Checking for two digits. If it is between 10 and 26 (inclusive)
+                    two_digit = int(message[i - 2:i])
+                    if 10 <= two_digit <= 26:
+                        count[i] += count[i - 2]
 
-            return result[len(message)]
+                result = count[len(message)]
+
+            return result
         except:  # pylint: disable=bare-except
             traceback.print_exc()
             return -1

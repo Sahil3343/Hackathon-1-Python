@@ -4,7 +4,7 @@ Input - 1, 2, -4, 0, -1, 0, 3, 7, 0, 5, 0, 1, -1, 0
 Expected Output - 1, 2, -4, -1, -1, 1, 3, 7, 5, 0, 0, 0, 0, 0
 
 Time Complexity Achieved - O(n)
-Time Complexity Reasoning - As we have two for loops (not nested) we
+Time Complexity Reasoning - As we have one for loop
 will achieve a time complexity of O(n)
 """
 
@@ -22,21 +22,22 @@ class Question1:
         try:
             # Initializing the result list
             result = []
+            zero_list = []
 
-            # First Loop - Appending all non-zero numbers to the result list
+            # Appending all non-zero numbers to the result list
+            # If zero, appending to zero_list
             for number in input_list:
                 if number != 0:
                     result.append(number)
+                else:
+                    zero_list.append(number)
 
-            # Second Loop - Appending all zero numbers to the result list
-            for number in input_list:
-                if number == 0:
-                    result.append(number)
+            result += zero_list
 
             # Returning result list
             return result
         except:  # pylint: disable=bare-except
-            traceback.print_exc()
+            print(traceback.print_exc())
             return "Error"
 
 

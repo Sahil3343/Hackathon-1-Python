@@ -16,6 +16,9 @@ import traceback
 
 class Question3:
     """Question 3 Class"""
+
+    perpendicular_queue = []
+
     def truck_queue(self, input_trucks):
         """
         Queueing Trucks for departure
@@ -23,9 +26,8 @@ class Question3:
         :return queue_possibility:
         """
         try:
-            # Initializing FinalQueue & Perpendicular Road
+            # Initializing FinalQueue
             final_queue = []
-            perpendicular_queue = []
 
             # Finding the smallest truck for setting the starting point
             smallest_truck = int(min(input_trucks))
@@ -39,21 +41,17 @@ class Question3:
                     current_truck += 1
 
                     # Checking if the perpendicular road is empty or not
-                    while len(perpendicular_queue) != 0:
-                        # Checking if the last element in perpendicular road equals current truck
-                        if perpendicular_queue[-1] == current_truck:
-                            final_queue.append(perpendicular_queue[-1])
-                            perpendicular_queue.pop()
-                            current_truck += 1
-                        else:
-                            break
+                    while len(self.perpendicular_queue) != 0 and self.perpendicular_queue[-1] == current_truck:
+                        final_queue.append(self.perpendicular_queue[-1])
+                        self.perpendicular_queue.pop()
+                        current_truck += 1
 
                 else:
                     # Current truck does not match input truck so appending it to perpendicular road
-                    perpendicular_queue.append(truck)
+                    self.perpendicular_queue.append(truck)
 
             # Returning result according to perpendicular queue size
-            if len(perpendicular_queue) == 0:
+            if len(self.perpendicular_queue) == 0:
                 return "Yes"
             return "No"
 
